@@ -8,6 +8,14 @@ class Session:
         self.username = username
         self.timeout = timeout
 
+    @staticmethod
+    def create_session(username: str):
+        return Session(
+            id=str(uuid.uuid4()),
+            username=username,
+            timeout=datetime.datetime.now() + datetime.timedelta(hours=1),
+        )
+
     def check_timeout(self) -> bool:
         return datetime.datetime.now() < self.timeout
 
@@ -17,11 +25,7 @@ class SessionPool:
         self.sessions = []
 
     def create_session(self, username: str) -> str:
-        session = Session(
-            id=str(uuid.uuid4()),
-            username=username,
-            timeout=datetime.datetime.now() + datetime.timedelta(hours=1),
-        )
+        session = Session.create_session(username)
         self.sessions.append(session)
         return session.id
 
