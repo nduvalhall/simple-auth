@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "simple-auth"
+version = "0.1.0"
+description = "Simple authentication system"
+authors = ["nduvalhall <nduvalhall@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "api", from = "." }, { include = "auth", from = "." }]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.110.0"
+toml = "^0.10.2"
+uvicorn = "^0.28.0"
+gunicorn = "^21.2.0"
+uuid = "^1.30"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
